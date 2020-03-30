@@ -4,7 +4,7 @@ package util.helper;
  * Created by liangjj on 2017/9/20.
  */
 public enum HttpContentType {
-    JPEG("image/jpeg");
+    JPEG("image/jpeg"),PDF("application/pdf");
 
     private String value;
 
