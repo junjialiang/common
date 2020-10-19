@@ -2,6 +2,7 @@ package util.common;
 
 import util.helper.DatePattern;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -10,7 +11,7 @@ import java.util.Locale;
  * Created by liangjj on 2017/9/14.
  */
 class DateUtil {
-    private static Locale china = Locale.CHINA;
+    private static final Locale china = Locale.CHINA;
 
     private DateUtil() {
     }
@@ -39,14 +40,27 @@ class DateUtil {
         return simpleDateFormat.format(date);
     }
 
-//    /**
-//     * 输入天数后将返回毫秒数
-//     *
-//     * @param days
-//     * @return
-//     */
-//    static long getMillisecondFromDays(int days) {
-//        // 一天等于86400000毫秒
-//        return days * 86400000L;
-//    }
+    /**
+     * 用于判断活动是否开始
+     *
+     * @param startTime 比如：2020-07-28 00:00:00
+     * @param endTime 比如：2020-08-28 23:59:59
+     * @return
+     */
+    static boolean isStarted(String startTime, String endTime) {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DatePattern.YMDHMS.toString());
+        boolean started = false;
+        try {
+            Date startDate = simpleDateFormat.parse(startTime);
+            Date endDate = simpleDateFormat.parse(endTime);
+            Date date = new Date();
+            long time = date.getTime();
+            if (startDate.getTime() <= time && time <= endDate.getTime()) {
+                started = true;
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return started;
+    }
 }

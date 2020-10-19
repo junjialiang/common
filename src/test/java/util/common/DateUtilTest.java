@@ -30,9 +30,11 @@ public class DateUtilTest {
         Assert.assertEquals(19, date.length());
     }
 
-//    @Test
-//    public void testGetMillisecondFromDays() {
-//        long millisecond = DateUtil.getMillisecondFromDays(3);
-//        Assert.assertTrue(millisecond >= 86400000L);
-//    }
+    @Test
+    public void testIsStarted() {
+        String startTime = "2020-07-28 00:00:00";
+        String endTime = "2020-08-28 23:59:59";
+        boolean isStarted = DateUtil.isStarted(startTime, endTime);
+        Assert.assertFalse(isStarted);
+    }
 }

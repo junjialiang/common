@@ -6,7 +6,7 @@ package util.helper;
 public enum DatePattern {
     YMD("yyyy-MM-dd"), YMDHMS("yyyy-MM-dd HH:mm:ss"), YMDHMSS("yyyy-MM-dd HH:mm:ss SSS");
 
-    private String value;
+    private final String value;
 
     DatePattern(String value) {
         this.value = value;
